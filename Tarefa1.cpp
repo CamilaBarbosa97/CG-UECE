@@ -52,10 +52,10 @@ void acolorfulsquare(){
     glVertex2d(250, 499);
     glColor3d(0.0d, 1.0d, 0.0);
     glVertex2d(499, 499);
-    glColor3d(1.0d, 0.0d, 0.0d);
-    glVertex2d(250, 250);
     glColor3d(1.0d, 1.0d, 1.0d);
     glVertex2d(499, 250);
+    glColor3d(1.0d, 0.0d, 0.0d);
+    glVertex2d(250, 250);
 
     glEnd();
 }

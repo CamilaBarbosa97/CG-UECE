@@ -1,2 +1,2 @@
-# Computa-o-Gr-fica
+# CG-UECE-2019
 Lista de exercícios da cadeira

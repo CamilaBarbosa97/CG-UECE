@@ -65,6 +65,10 @@ void desenha(){
 	triangulo();
 	glViewport(250, 250, 250, 250);
 	pseudoquadrado();
+	glScissor(0, 0, 250, 250);
+	glEnable(GL_SCISSOR_TEST);
+	glClearColor(0.0d, 1.0d, 0.0d, 0.0d);
+	glClear(GL_COLOR_BUFFER_BIT);
 	glViewport(0, 0, 250, 250);
 	duaslinhas();
 	glViewport(250, 0, 250, 250);

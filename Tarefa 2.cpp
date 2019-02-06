@@ -4,6 +4,7 @@
 #define WIDTH	500
 #define HEIGHT	500
 
+//queria colocar uma carinha, sad.
 void head (){
     glColor3d (1.5d, 1.5d, 1.3d);
     glBegin (GL_QUADS);
@@ -14,8 +15,18 @@ void head (){
         glVertex2d (125, 350);
 
     glEnd();
+    //olhinhos
+    glColor3d (1.0d, 0.0d, 1.0d);
+    glPointSize(6);
+    glBegin(GL_POINTS);
+
+        glVertex2d(90, 385);
+        glVertex2d(115, 385);
+
+    glEnd();
 }
 
+//corpinho fitness
 void body () {
     glColor3d (0.0d, 0.5d, 0.5d);
     glBegin (GL_QUADS);
@@ -28,6 +39,7 @@ void body () {
     glEnd();
 }
 
+//um pouco fino
 void forearm () {
     glColor3d (0.5d, 1.0d, 1.0d);
     glBegin (GL_QUADS);
@@ -40,6 +52,7 @@ void forearm () {
     glEnd();
 }
 
+//idem.
 void arm () {
     glColor3d (1.5d, 1.5d, 1.5d);
     glBegin(GL_QUADS);
@@ -52,12 +65,12 @@ void arm () {
     glEnd();
 }
 
+// let's work
 void desenha () {
-	//glMatrixMode(GL_MODELVIEW);
-	//glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	//glTranslated(140.0d, 0.0d, 0.0d);
     head();
 	body();
 	forearm();
@@ -65,25 +78,81 @@ void desenha () {
 
 	glFlush();
 }
+
+//let's work 2
 void start(){
-	//Define o fundo vermelho
+	//Kuro background
 	glClearColor(0.0d, 0.0d, 0.0d, 0.0d);
-	//glMatrixMode(GL_PROJECTION);
-	//glLoadIdentity();
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 	glOrtho(0, WIDTH, 0, HEIGHT, -1, 1);
 }
 
-//void teclado (unsigned char key, int x, int y){
-    //if (key == 'l'){} vai pra esquerda
-    //if (key == 'r'){} vai pra direita
-    //if (key == 'g'){} zoom in
-    //if (key == 'u'){} vai pra cima
-    //if (key == 'd'){} vai pra baixo
-    //if (key == 'z'){} zoom out
-    //if (key == 'a'){} mexe o braco
-    //if (key == 'b'){} mexe o bracinho
-    //glutPostRedisplay();
-    //}
+void teclado (unsigned char key, int x, int y){
+    switch (key){
+        case 'l':     //esquerda
+        case 'L':
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            glTranslated(140.0d, 0.0d, 0.0d);
+            glutPostRedisplay();
+            break;
+
+        case 'R':     //direita
+        case 'r':
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            glTranslated(-140.0d, 0.0d, 0.0d);
+            glutPostRedisplay();
+            break;
+
+        case 'u':      //cima
+        case 'U':
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            glTranslated(0.0d, 100.0d, 0.0d);
+            glutPostRedisplay();
+            break;
+
+        case 'd':       //baixo
+        case 'D':
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            glTranslated(0.0d, -100.0d, 0.0d);
+            glutPostRedisplay();
+            break;
+
+        case 'g':
+        case 'G':       //zoom (Incompleta)
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            glutPostRedisplay();
+            break;
+
+        case 's':       //zoom out (Incompleta)
+        case 'S':
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            glutPostRedisplay();
+            break;
+
+        case 'a':       //mexe o braco todo
+        case 'A':
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            glutPostRedisplay();
+            break;
+
+        case 'b':       //mexe so o braco propriamente dito
+        case 'B':
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
+            glutPostRedisplay();
+            break;
+
+    }
+}
+
 
 //Main function //
 int main(int argc, char **argv){
@@ -94,6 +163,7 @@ int main(int argc, char **argv){
 	glutCreateWindow("Naman chubda");
 	glutDisplayFunc(desenha);
 	start();
+	glutKeyboardFunc(teclado);
 	glutMainLoop();
 	return 0;
 }

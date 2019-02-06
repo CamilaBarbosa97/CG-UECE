@@ -4,6 +4,8 @@
 #define WIDTH	500
 #define HEIGHT	500
 
+int px = 0;
+int py = 0;
 //queria colocar uma carinha, sad.
 void head (){
     glColor3d (1.5d, 1.5d, 1.3d);
@@ -68,14 +70,23 @@ void arm () {
 // let's work
 void desenha () {
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
 	glClear(GL_COLOR_BUFFER_BIT);
 
     head();
 	body();
+    glPushMatrix();
+    glTranslated(150.0d, 350.0d, 0.0d);
+    glRotated(px, 0.0d, 0.0d, 1.0d);
+    glTranslated(-150.0d, -350.0d, 0.0d);
 	forearm();
-	arm();
 
+    glPushMatrix();
+    glTranslated(150.0d, 270.0d, 0.0d);
+    glRotated(py, 0.0d, 0.0d, 1.0d);
+    glTranslated(-150.0d, -270.0d, 0.0d);
+	arm();
+    glPopMatrix();
+    glPopMatrix();
 	glFlush();
 }
 
@@ -93,7 +104,6 @@ void teclado (unsigned char key, int x, int y){
         case 'l':     //esquerda
         case 'L':
             glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
             glTranslated(140.0d, 0.0d, 0.0d);
             glutPostRedisplay();
             break;
@@ -101,7 +111,6 @@ void teclado (unsigned char key, int x, int y){
         case 'R':     //direita
         case 'r':
             glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
             glTranslated(-140.0d, 0.0d, 0.0d);
             glutPostRedisplay();
             break;
@@ -109,7 +118,6 @@ void teclado (unsigned char key, int x, int y){
         case 'u':      //cima
         case 'U':
             glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
             glTranslated(0.0d, 100.0d, 0.0d);
             glutPostRedisplay();
             break;
@@ -117,7 +125,6 @@ void teclado (unsigned char key, int x, int y){
         case 'd':       //baixo
         case 'D':
             glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
             glTranslated(0.0d, -100.0d, 0.0d);
             glutPostRedisplay();
             break;
@@ -125,28 +132,28 @@ void teclado (unsigned char key, int x, int y){
         case 'g':
         case 'G':       //zoom (Incompleta)
             glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
+            glScaled(1.25d, 1.25d, 1.25d);
             glutPostRedisplay();
             break;
 
         case 's':       //zoom out (Incompleta)
         case 'S':
             glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
+            glScaled(0.75d, 0.75d, 0.75d);
             glutPostRedisplay();
             break;
 
         case 'a':       //mexe o braco todo
         case 'A':
             glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
+            px = (px + 5) % 360;
             glutPostRedisplay();
             break;
 
         case 'b':       //mexe so o braco propriamente dito
         case 'B':
             glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
+            py = (py + 5) % 360;
             glutPostRedisplay();
             break;
 

@@ -1,0 +1,53 @@
+//Tentativa 1 de fazer o trabalho de CG em uma tarde depressiva //
+
+#include <GL/glut.h>
+#include <iostream>
+
+#define WIDTH 1000
+#define HEIGHT 1000
+
+int pos_x = 0;
+int pos_y = 0;
+double rot = 0.0;
+
+void teto (){
+
+}
+
+void corpo (){
+}
+
+void porta (){
+}
+
+void janela (){
+}
+
+void draw (){
+}
+ 
+void GerenciaTeclado(unsigned char key, int x, int y){
+    switch (key) {
+        case 'd' : 
+        case 'a' :
+    }
+}
+
+void animation (){
+}
+
+void start (){
+    glClearColor(1.0d, 1.0d, 1.0d, 1.0d);
+}
+
+void main (int argc, char **argv){
+    glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitWindowSize (WIDTH, HEIGH);
+	glutInitWindowPosition (100, 100);
+	glutCreateWindow("A merciless house");
+	glutDisplayFunc(draw);
+	glutKeyboardFunc(GerenciaTeclado);
+	Inicializa();
+}
+    

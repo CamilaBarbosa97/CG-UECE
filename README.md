@@ -1,2 +1,2 @@
 # CG-UECE-2019
-Lista de exercícios da cadeira
+Lista de exercícios da cadeira.

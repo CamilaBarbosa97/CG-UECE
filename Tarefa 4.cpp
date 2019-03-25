@@ -4,11 +4,11 @@
 #define WIDTH	500
 #define HEIGHT	500
 
-int pos_x = -10;
-int pos_y = -10;
-int state = 1;
+int pos_x = 0;
+int pos_y = 0;
+int direction = 0;
 
-void teto () {
+void casa() {
 	glColor3d(1.0d, 0.0d, 0.0d);
 
 	glBegin (GL_TRIANGLES);
@@ -16,8 +16,7 @@ void teto () {
 		glVertex2d (350, 285);
 		glVertex2d (270, 350);
 	glEnd();
-}
-void corpo () {
+
 	glColor3d(0.0d, 0.0d, 1.0d);
 
 	glBegin (GL_QUADS);
@@ -26,8 +25,7 @@ void corpo () {
 		glVertex2d (350, 150);
 		glVertex2d (190, 150);
 	glEnd();
-}
-void porta () {
+
 	glColor3d(1.0d, 1.0d, 1.0d);
 
 	glBegin (GL_QUADS);
@@ -43,9 +41,8 @@ void porta () {
         glVertex2d (266, 185);
 
     glEnd();
-}
-void janela () {
-	glColor3d(1.0d, 1.0d, 1.0d);
+
+    glColor3d(1.0d, 1.0d, 1.0d);
 
 	glBegin (GL_QUADS);
 		glVertex2d (290, 270);
@@ -62,41 +59,125 @@ void janela () {
         glVertex2d (290, 255);
         glVertex2d (340, 255 );
     glEnd();
-
 }
+
 void desenha () {
 	glClear (GL_COLOR_BUFFER_BIT);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
 	glTranslated(pos_x, pos_y, 0.0);
-	teto();
-	corpo();
-	porta();
-	janela();
-
+    casa();
+    
 	glutSwapBuffers();
 }
+void anima1(){
+    switch (direction){
 
-void anima (int value) {
-	pos_x += 1.0;
-	pos_y += 1.0;
+        case 0 :
+			if(pos_x + 350 == 500){
+				if((rand() % 2) == 0){
+					direction = 1;
+				} else
+					direction = 4;
+			}
 
-	if (pos_x < 500){
-        pos_x += 0.15;
+			if(pos_y + 300 == 500){
+				if((rand() % 2) == 0) {
+					direction = 2;
+				} else
+					direction = 3;
+			} else {
+				pos_x += 1.0;
+				pos_y += 1.0;
+			}
+
+			break;
+
+		case 1 :
+			if(pos_y + 300 == 500){
+				if((rand() % 2) == 0){
+					direction = 3;
+				} else
+					direction = 2;
+			} else {
+				pos_x += 1.0;
+				pos_y += 1.0;
+			}
+
+			break;
+
+		case 2 :
+			if(pos_x + 350 == 500){
+				if((rand() % 2) == 0){
+					direction = 4;
+				} else
+					direction = 1;
+			} else {
+				pos_x += 1.0;
+				pos_y += 1.0;
+			}
+
+			break;
+
+		case 3 :
+			if(pos_x + 310 == 0){
+				if((rand() % 2) == 0){
+					direction = 5;
+				} else
+					direction = 0;
+			} else {
+				pos_x -= 1.0;
+				pos_y -= 1.0;
+			}
+
+			break;
+
+		case 4 :
+			if(pos_y + 150 == 0){
+				if((rand() % 2) == 0){
+					direction = 6;
+				} else
+					direction = 0;
+			} else {
+				pos_x += 1.0;
+				pos_y += 1.0;
+			}
+
+			break;
+
+		case 5 :
+			if(pos_y + 150 == 0){
+				if((rand() % 2) == 0){
+					direction = 0;
+				} else
+					direction = 6;
+			} else {
+				pos_x += 1.0;
+				pos_y += 1.0;
+			}
+
+			break;
+
+		case 6 :
+			if(pos_x + 310 == 0){
+				if((rand() % 2) == 0){
+					direction = 0;
+				} if((rand() % 2) == 0){
+					direction = 5;
+				}
+			} else {
+				pos_x -= 1.0;
+				pos_y -= 1.0;
+			}
+
+			break;
 	}
-	if (pos_y < 500){
-        pos_y += 0.15;
-	}
-	if (pos_x == 500){
-        pos_x -= 0.15;
-	}
-	if (pos_y == 500){
-        pos_y -= 0.15;
-	}
+}
+void anima0 (int value) {
+    anima1();
     glutPostRedisplay();
-    glutTimerFunc(1, anima, 0);
+    glutTimerFunc(1, anima0, 0);
 
 }
 
@@ -119,6 +200,6 @@ int main(int argc, char **argv){
 	glutCreateWindow("Four Seasons");
 	glutDisplayFunc(desenha);
 	start();
-	glutTimerFunc(100, anima, 1);
+	glutTimerFunc(1, anima0, 0);
 	glutMainLoop();
 }

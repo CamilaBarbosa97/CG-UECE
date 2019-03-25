@@ -4,26 +4,27 @@
 #define WIDTH	500
 #define HEIGHT	500
 
-int pos_x = 0;
-int pos_y = 0;
+int pos_x = -10;
+int pos_y = -10;
+int state = 1;
 
 void teto () {
 	glColor3d(1.0d, 0.0d, 0.0d);
 
 	glBegin (GL_TRIANGLES);
-		glVertex2d (200, 300);
-		glVertex2d (350, 300);
-		glVertex2d (290, 350);
+		glVertex2d (190, 285);
+		glVertex2d (350, 285);
+		glVertex2d (270, 350);
 	glEnd();
 }
 void corpo () {
 	glColor3d(0.0d, 0.0d, 1.0d);
 
 	glBegin (GL_QUADS);
-		glVertex2d (200, 300);
-		glVertex2d (300, 300);
-		glVertex2d (300, 150);
-		glVertex2d (200, 150);
+		glVertex2d (190, 285);
+		glVertex2d (350, 285);
+		glVertex2d (350, 150);
+		glVertex2d (190, 150);
 	glEnd();
 }
 void porta () {
@@ -31,27 +32,44 @@ void porta () {
 
 	glBegin (GL_QUADS);
 		glVertex2d (230, 155);
-		glVertex2d (250, 155);
-		glVertex2d (250, 220);
+		glVertex2d (270, 155);
+		glVertex2d (270, 220);
 		glVertex2d (230, 220);
 	glEnd();
+
+	glColor3d(0.0d, 0.0d, 0.0d);
+
+    glBegin(GL_POINTS);
+        glVertex2d (266, 185);
+
+    glEnd();
 }
 void janela () {
 	glColor3d(1.0d, 1.0d, 1.0d);
 
 	glBegin (GL_QUADS);
-		glVertex2d (255, 270); 
 		glVertex2d (290, 270);
+		glVertex2d (340, 270);
+		glVertex2d (340, 240);
 		glVertex2d (290, 240);
-		glVertex2d (255, 240);
 	glEnd();
+
+	glColor3d(0.0d, 0.0d, 0.0d);
+
+	glBegin (GL_LINES);
+        glVertex2d (315, 270);
+        glVertex2d (315, 240);
+        glVertex2d (290, 255);
+        glVertex2d (340, 255 );
+    glEnd();
+
 }
 void desenha () {
-	glClear (GL_COLOR_BUFFER_BIT);	
+	glClear (GL_COLOR_BUFFER_BIT);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	
+
 	glTranslated(pos_x, pos_y, 0.0);
 	teto();
 	corpo();
@@ -61,13 +79,26 @@ void desenha () {
 	glutSwapBuffers();
 }
 
-//void anima (int value) {
-	//pos_x += 1.0;
-	//pos_y += 1.0;
-	
-	//if (pos_x == 0 or pos_x == 500) {
-		
-//}
+void anima (int value) {
+	pos_x += 1.0;
+	pos_y += 1.0;
+
+	if (pos_x < 500){
+        pos_x += 0.15;
+	}
+	if (pos_y < 500){
+        pos_y += 0.15;
+	}
+	if (pos_x == 500){
+        pos_x -= 0.15;
+	}
+	if (pos_y == 500){
+        pos_y -= 0.15;
+	}
+    glutPostRedisplay();
+    glutTimerFunc(1, anima, 0);
+
+}
 
 void start(){
 	//Shiro background
@@ -88,6 +119,6 @@ int main(int argc, char **argv){
 	glutCreateWindow("Four Seasons");
 	glutDisplayFunc(desenha);
 	start();
-	//glutTimerFunc(100, anima, 1);
+	glutTimerFunc(100, anima, 1);
 	glutMainLoop();
 }

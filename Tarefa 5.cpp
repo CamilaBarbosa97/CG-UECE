@@ -18,7 +18,7 @@ void Luzes() {
 	glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz );
 
 	/* Ativa o uso de uma fonte de luz ambiente */
-        GLfloat ambiente[4] = { 0.2, 0.2, 0.2, 1.0};
+    	GLfloat ambiente[4] = { 0.2, 0.2, 0.2, 1.0};
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambiente);
 
 	/* Características do material */
@@ -35,12 +35,12 @@ void Luzes() {
 
 void draw () {
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-        glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	Luzes();
+    	glLoadIdentity();
+    	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    	Luzes();
 
     	glTranslated(-5.0d, 3.0d, 0.0d);
-   	glutSolidTorus(0.25, 2, 100, 100);
+    	glutSolidTorus(0.25, 2, 100, 100);
     	glTranslated(5.0d, 0.0d, 0.0d);
     	glutSolidTorus(0.25, 2, 100, 100);
     	glTranslated(5.0d, 0.0d, 0.0d);
@@ -49,7 +49,7 @@ void draw () {
     	glutSolidTorus(0.25, 2, 100, 100);
     	glTranslated(5.0d, 0.0d, 1.0d);
     	glutSolidTorus(0.25, 2, 100, 100);
-    	glutPostRedisplay();
+
 	glFlush();
 }
 void start (void) {

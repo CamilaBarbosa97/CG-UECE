@@ -34,7 +34,7 @@ void Luz1() {   //arco azul //
 }
 
 void Luz2() {   //arco preto //
-    GLfloat luzAmbiente[4] = {1.0, 1.0, 1.0, 1.0};
+    	GLfloat luzAmbiente[4] = {1.0, 1.0, 1.0, 1.0};
 	GLfloat luzDifusa[4] = {1.0, 1.0, 1.0, 1.0};
 	GLfloat luzEspecular[4] = {1.0, 1.0, 1.0, 1.0};
 	GLfloat posicaoLuz[4] = {0.0, 50.0, 50.0, 1.0};
@@ -62,7 +62,7 @@ void Luz2() {   //arco preto //
 }
 
 void Luz3 () {  //arco vermelho //
-    GLfloat luzAmbiente[4] = {1.0, 1.0, 1.0, 1.0};
+    	GLfloat luzAmbiente[4] = {1.0, 1.0, 1.0, 1.0};
 	GLfloat luzDifusa[4] = {1.0, 1.0, 1.0, 1.0};
 	GLfloat luzEspecular[4] = {1.0, 1.0, 1.0, 1.0};
 	GLfloat posicaoLuz[4] = {0.0, 50.0, 50.0, 1.0};

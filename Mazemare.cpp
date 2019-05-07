@@ -7,28 +7,8 @@ void init()
     glEnable(GL_LIGHT0);
     glEnable(GL_COLOR_MATERIAL);
 }
-
-void display()
-{
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    GLint viewport[4];
-    glGetIntegerv(GL_VIEWPORT, viewport);
-    double aspect = (double)viewport[2] / (double)viewport[3];
-    gluPerspective(60, aspect, 1, 100);
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
-    // move back a bit
-    glTranslatef( 0, 0, -35 );
-
-    static float angle = 0;
-    angle += 1.0f;
-
-    glPushMatrix();
+void mapa(){
+glPushMatrix();
         glTranslatef(-28,-18,0);
         glColor3f(1.0, 0, 0);
         glutSolidCube(3);
@@ -861,7 +841,27 @@ void display()
         glColor3f(1.0, 0, 0);
         glutSolidCube(3);
     glPopMatrix();
+}
+void display()
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    GLint viewport[4];
+    glGetIntegerv(GL_VIEWPORT, viewport);
+    double aspect = (double)viewport[2] / (double)viewport[3];
+    gluPerspective(60, aspect, 1, 100);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    // move back a bit
+    glTranslatef( 0, 0, -35 );
+
+    static float angle = 0;
+    angle += 1.0f;
+    mapa();
     glutSwapBuffers();
 
 }
